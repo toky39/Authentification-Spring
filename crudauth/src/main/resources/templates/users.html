@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Users - CRUDAuth</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<div class="container">
+    <div class="users-container">
+        <div class="page-header">
+            <div>
+                <h2>Gestion des utilisateurs</h2>
+            </div>
+            <form action="/logout" method="post" style="margin: 0;">
+                <button type="submit" class="btn-logout">Déconnexion</button>
+            </form>
+        </div>
+
+        <div th:if="${users == null or users.isEmpty()}" class="no-data">
+            <p>Aucun utilisateur trouvé</p>
+        </div>
+
+        <div class="table-responsive" th:if="${users != null and !users.isEmpty()}">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nom d'utilisateur</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr th:each="u : ${users}">
+                        <td th:text="${u.id}"></td>
+                        <td th:text="${u.username}"></td>
+                        <td>
+                            <div class="action-buttons">
+                                <a th:href="@{/users/edit/{id}(id=${u.id})}" class="edit-btn">Modifier</a>
+                                <form th:action="@{/users/delete/{id}(id=${u.id})}"
+                                      method="post"
+                                      style="display:inline;">
+                                    <button type="submit" class="delete-btn"
+                                            onclick="return confirm('Êtes-vous sûr ?')">
+                                        Supprimer
+                                    </button>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script src="/js/script.js"></script>
+</body>
+</html>

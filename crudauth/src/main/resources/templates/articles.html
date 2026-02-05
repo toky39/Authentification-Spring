@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Articles - CRUDAuth</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<div class="container">
+    <div class="users-container">
+        <div class="page-header">
+            <div>
+                <h2>Gestion des Articles en Stock</h2>
+            </div>
+            <div style="display: flex; gap: 10px; align-items: center;">
+                <a href="/users" class="add-btn"> Utilisateurs</a>
+                <a href="/articles/new" class="add-btn">+ Ajouter Article</a>
+                
+                <!-- Profile Avatar Section -->
+                <div class="profile-section">
+                    <div class="avatar">
+                        <span th:text="${#strings.substring(currentUser, 0, 1).toUpperCase()}">U</span>
+                    </div>
+                    <div class="profile-dropdown">
+                        <p th:text="${currentUser}">Utilisateur</p>
+                        <a href="/profile" class="profile-link">Mon Profil</a>
+                        <form action="/logout" method="post" style="margin: 0;">
+                            <button type="submit" class="logout-link">Déconnexion</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div th:if="${articles == null or articles.isEmpty()}" class="no-data">
+            <p>Aucun article trouvé</p>
+        </div>
+
+        <div class="table-responsive" th:if="${articles != null and !articles.isEmpty()}">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nom</th>
+                        <th>Description</th>
+                        <th>Prix</th>
+                        <th>Quantité</th>
+                        <th>Catégorie</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr th:each="art : ${articles}">
+                        <td th:text="${art.name}"></td>
+                        <td th:text="${art.description}"></td>
+                        <td th:text="${art.price} + ' Ariary'"></td>
+                        <td th:text="${art.quantity}"></td>
+                        <td th:text="${art.category}"></td>
+                        <td>
+                            <div class="action-buttons">
+                                <form th:action="@{/articles/increase/{id}(id=${art.id})}" method="post" class="quantity-form">
+                                    <button type="submit" class="icon-btn up-btn" title="Augmenter la quantité">▲</button>
+                                </form>
+                                <form th:action="@{/articles/decrease/{id}(id=${art.id})}" method="post" class="quantity-form">
+                                    <button type="submit" class="icon-btn down-btn" title="Diminuer la quantité">▼</button>
+                                </form>
+                                <a th:href="@{/articles/edit/{id}(id=${art.id})}" class="icon-btn edit-icon" title="Modifier">✏️</a>
+                                <form th:action="@{/articles/delete/{id}(id=${art.id})}" method="post" class="quantity-form">
+                                    <button type="submit" class="icon-btn delete-icon" title="Supprimer"
+                                            onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet article ?')">🗑️</button>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>

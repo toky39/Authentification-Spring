@@ -13,9 +13,12 @@
             <div>
                 <h2>Gestion des utilisateurs</h2>
             </div>
-            <form action="/logout" method="post" style="margin: 0;">
-                <button type="submit" class="btn-logout">Déconnexion</button>
-            </form>
+            <div style="display: flex; gap: 10px;">
+                <a href="/articles" class="add-btn">Articles</a>
+                <form action="/logout" method="post" style="margin: 0;">
+                    <button type="submit" class="btn-logout">Déconnexion</button>
+                </form>
+            </div>
         </div>
 
         <div th:if="${users == null or users.isEmpty()}" class="no-data">
@@ -26,7 +29,6 @@
             <table>
                 <thead>
                     <tr>
-                        <th>ID</th>
                         <th>Nom d'utilisateur</th>
                         <th>Actions</th>
                     </tr>
@@ -34,7 +36,6 @@
 
                 <tbody>
                     <tr th:each="u : ${users}">
-                        <td th:text="${u.id}"></td>
                         <td th:text="${u.username}"></td>
                         <td>
                             <div class="action-buttons">

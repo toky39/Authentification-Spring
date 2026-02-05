@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Éditer Article - CRUDAuth</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<div class="container">
+    <div class="edit-container">
+        <a href="/articles" class="back-link">Retour aux articles</a>
+
+        <!-- Formulaire d'ajout -->
+        <div th:if="${article.id == null}">
+            <div class="auth-header" style="margin-bottom: 30px;">
+                <h2>Ajouter un nouvel article</h2>
+                <p>Remplissez les informations de l'article</p>
+            </div>
+
+            <form th:action="@{/articles/save}" method="post">
+                <div class="form-group">
+                    <label for="name">Nom de l'article</label>
+                    <input type="text" id="name" name="name" th:value="${article.name}" placeholder="Nom de l'article" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="description">Description</label>
+                    <textarea id="description" name="description" placeholder="Description de l'article" required>[[${article.description}]]</textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="price">Prix (€)</label>
+                    <input type="number" id="price" name="price" th:value="${article.price}" step="0.01" placeholder="0.00" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="quantity">Quantité</label>
+                    <input type="number" id="quantity" name="quantity" th:value="${article.quantity}" placeholder="0" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="category">Catégorie</label>
+                    <input type="text" id="category" name="category" th:value="${article.category}" placeholder="Catégorie" required>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Ajouter Article</button>
+            </form>
+        </div>
+
+        <!-- Formulaire de modification -->
+        <div th:if="${article.id != null}">
+            <div class="auth-header" style="margin-bottom: 30px;">
+                <h2>Modifier l'article</h2>
+                <p>Mettez à jour les informations de l'article</p>
+            </div>
+
+            <form th:action="@{/articles/update/{id}(id=${article.id})}" method="post">
+                <div class="form-group">
+                    <label for="name">Nom de l'article</label>
+                    <input type="text" id="name" name="name" th:value="${article.name}" placeholder="Nom de l'article" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="description">Description</label>
+                    <textarea id="description" name="description" placeholder="Description de l'article" required>[[${article.description}]]</textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="price">Prix (€)</label>
+                    <input type="number" id="price" name="price" th:value="${article.price}" step="0.01" placeholder="0.00" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="quantity">Quantité</label>
+                    <input type="number" id="quantity" name="quantity" th:value="${article.quantity}" placeholder="0" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="category">Catégorie</label>
+                    <input type="text" id="category" name="category" th:value="${article.category}" placeholder="Catégorie" required>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Modifier Article</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="/js/script.js"></script>
+</body>
+</html>
+

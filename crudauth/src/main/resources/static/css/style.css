@@ -317,6 +317,62 @@ table tbody tr:hover {
     background: #dc2626;
 }
 
+/* ===== Icon Buttons ===== */
+.quantity-form {
+    display: inline;
+    margin: 0;
+}
+
+.icon-btn {
+    background: none;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    padding: 6px 10px;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+}
+
+.up-btn {
+    color: var(--success-color);
+}
+
+.up-btn:hover {
+    background: rgba(16, 185, 129, 0.1);
+    transform: scale(1.2);
+}
+
+.down-btn {
+    color: var(--warning-color);
+}
+
+.down-btn:hover {
+    background: rgba(245, 158, 11, 0.1);
+    transform: scale(1.2);
+}
+
+.edit-icon {
+    color: var(--primary-color);
+}
+
+.edit-icon:hover {
+    background: rgba(79, 70, 229, 0.1);
+    transform: scale(1.2);
+}
+
+.delete-icon {
+    color: var(--danger-color);
+}
+
+.delete-icon:hover {
+    background: rgba(239, 68, 68, 0.1);
+    transform: scale(1.2);
+}
+
 .no-data {
     text-align: center;
     padding: 40px;
@@ -354,6 +410,176 @@ table tbody tr:hover {
 
 .back-link::before {
     content: "← ";
+}
+
+/* ===== Form Container ===== */
+.form-container {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+    padding: 40px;
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.form-container h2 {
+    font-size: 24px;
+    color: var(--text-dark);
+    margin-bottom: 25px;
+}
+
+.form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid var(--border-color);
+    border-radius: 6px;
+    font-size: 14px;
+    font-family: inherit;
+    min-height: 120px;
+    resize: vertical;
+    transition: all 0.3s ease;
+}
+
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+}
+
+.form-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 30px;
+}
+
+.form-actions button,
+.form-actions a {
+    flex: 1;
+    padding: 12px;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+}
+
+.add-btn {
+    background: var(--success-color);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.add-btn:hover {
+    background: #059669;
+    transform: translateY(-2px);
+}
+
+/* ===== Profile Section ===== */
+.profile-section {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(79, 70, 229, 0.3);
+}
+
+.avatar:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 12px rgba(79, 70, 229, 0.4);
+}
+
+.profile-dropdown {
+    position: absolute;
+    top: 50px;
+    right: 0;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    padding: 15px;
+    min-width: 180px;
+    display: none;
+    z-index: 1000;
+    border: 1px solid var(--border-color);
+}
+
+.profile-section:hover .profile-dropdown {
+    display: block;
+}
+
+.profile-dropdown p {
+    margin: 0;
+    padding: 0 0 10px 0;
+    font-weight: 600;
+    color: var(--text-dark);
+    border-bottom: 1px solid var(--border-color);
+    margin-bottom: 10px;
+}
+
+.profile-link {
+    display: block;
+    padding: 8px 0;
+    color: var(--primary-color);
+    text-decoration: none;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    border-radius: 4px;
+}
+
+.profile-link:hover {
+    background: var(--light-bg);
+    color: var(--primary-dark);
+    padding-left: 8px;
+}
+
+.logout-link {
+    display: block;
+    width: 100%;
+    padding: 8px 0;
+    background: none;
+    border: none;
+    color: var(--danger-color);
+    text-decoration: none;
+    font-size: 14px;
+    cursor: pointer;
+    text-align: left;
+    transition: all 0.3s ease;
+    font-family: inherit;
+    margin-top: 8px;
+    border-top: 1px solid var(--border-color);
+    padding-top: 8px;
+}
+
+.logout-link:hover {
+    background: var(--light-bg);
+    padding-left: 8px;
+    border-radius: 4px;
 }
 
 /* ===== Loading Spinner ===== */

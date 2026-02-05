@@ -65,4 +65,12 @@ public class UserService {
         return null;
     }
 
+    public User getUserByUsername(String username) {
+        if (username == null) {
+            return null;
+        }
+        Optional<User> userOpt = userRepository.findByUsername(username);
+        return userOpt.orElse(null);
+    }
+
 }
